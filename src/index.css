@@ -1,0 +1,126 @@
+/* ===== 铁血淞沪 1937 - 战时档案美学 ===== */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind base */
+@import "tailwindcss";
+
+/* ===== 色彩系统 ===== */
+:root {
+  /* 背景 */
+  --bg-dark: #1a1814;
+  --bg-darker: #131210;
+
+  /* 纸张 */
+  --paper: #f4efe5;
+  --paper-dark: #e8e0d2;
+  --paper-aged: #d8d0c2;
+
+  /* 墨色 */
+  --ink: #2a2622;
+  --ink-light: #6b6560;
+  --ink-faded: #9a958e;
+
+  /* 血色 */
+  --blood: #8c3d3d;
+  --blood-dark: #6b2c2c;
+  --blood-light: #a85555;
+
+  /* 铜色 */
+  --bronze: #786e5c;
+  --bronze-light: #a09585;
+}
+
+/* ===== 基础重置 ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  background-color: var(--bg-dark);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-faded);
+  border-radius: 2px;
+}
+
+/* ===== 简单工具类 ===== */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
