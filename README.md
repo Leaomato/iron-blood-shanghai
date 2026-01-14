@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# 铁血淞沪：1937 (Iron & Blood: Shanghai 1937)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **"这不是一场你能赢的战争。你唯一能决定的，是谁先死，谁后死，死多少。"**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📅 民国二十六年 · 机密档案
 
-## React Compiler
+1937年8月13日，上海。
+远东最繁华的都市，在一夜之间变成了血肉磨坊。
+三个月。
+七十万大军。
+二十五万条性命。
+一座注定陷落的城。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**《铁血淞沪：1937》** 是一款基于历史决策的叙事游戏（Reigns-like）。在这里，你不是冲锋陷阵的士兵，而是那个在地图前握着红蓝铅笔、双手颤抖的指挥官。你的每一个决定——哪怕只是轻轻划过的一笔——都将在几公里外，决定成千上万个家庭的破碎与存亡。
 
-## Expanding the ESLint configuration
+### ⚔️ 核心体验
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **沉重的历史天平**：在 **精锐战力**、**国际声望**、**后勤补给** 与 **军民士气** 之间艰难维系。任何一项归零，都意味着全局的崩塌。
+*   **无法回头的抉择**：
+    *   向左，也许是忍辱负重的妥协，保存实力的撤退；
+    *   向右，也许是玉石俱焚的冲锋，毫无意义的牺牲。
+    *   *——你会为了争取国际社会的虚无缥mm而牺牲仅存的德械师吗？*
+    *   *——你会为了阻挡敌军坦克，下令炸毁还在撤退难民的桥梁吗？*
+*   **真实的蝴蝶效应**：是否击沉"出云号"？是否处决汉奸黄浚？是否接受陶德曼的调停？历史的节点在你手中，有些选择会带来短暂的希望，有些则通向更深的黑暗。
+*   **冰冷的文字**：没有炫目的特效，只有如刀般锋利的战报、遗书、电文和死亡数字。
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🕯️ 结局
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+游戏包含 **15种** 不同的结局。
+并没有所谓的"完美通关"。
+最好的结果，不过是在那场注定到来的大撤退中，为这个民族多保留一分元气，多争取一寸尊严。
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> "八十七天。二十五万条命。一座城。"
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🛠️ 技术栈
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+本项目使用现代前端技术栈构建，旨在通过极简的交互传达厚重的叙事体验：
+
+- **核心框架**: React 19 + TypeScript
+- **构建工具**: Vite
+- **样式方案**: Tailwind CSS v4
+- **动画引擎**: Framer Motion (实现流畅且压抑的卡片交互)
+- **部署**: GitHub Actions & GitHub Pages
+
+### 🚀 本地运行
+
+当你翻开这份档案时，请确信你已做好了面对历史的准备。
+
+1. **克隆档案库**
+   ```bash
+   git clone https://github.com/your-username/iron-blood-1937.git
+   ```
+
+2. **安装依赖**
+   ```bash
+   npm install
+   ```
+
+3. **开启推演**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+### 📜 版权与致敬
+
+本游戏纯属虚构与历史再创作，旨在致敬 1937 年在淞沪战场上牺牲的全体军民。
+代码遵循 MIT 开源协议。
+
+**谨以此作，献给那些没有墓碑的名字。**
