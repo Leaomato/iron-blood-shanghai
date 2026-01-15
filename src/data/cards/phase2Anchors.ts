@@ -113,7 +113,7 @@ export const phase2Anchors: Card[] = [
             effects: {
                 stats: [
                     { stat: 'SUPPLY', value: 15 },
-                    { stat: 'INTL', value: -10 },
+                    { stat: 'INTL', value: -5 },
                 ],
             },
         },

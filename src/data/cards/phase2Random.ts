@@ -225,7 +225,7 @@ export const phase2Random: Card[] = [
             description: '不对外部抱幻想。自己的仗自己打。',
             effects: {
                 stats: [
-                    { stat: 'INTL', value: -8 },
+                    { stat: 'INTL', value: -4 },
                     { stat: 'GERMAN_TRUST', value: 3 },
                     { stat: 'ELITE', value: -6, isBattleDamage: true },
                     { stat: 'MORALE', value: 1 },
@@ -459,7 +459,7 @@ export const phase2Random: Card[] = [
             effects: {
                 stats: [
                     { stat: 'ELITE', value: -20, isBattleDamage: true },
-                    { stat: 'INTL', value: 6 },
+                    { stat: 'INTL', value: 8 },
                     { stat: 'MORALE', value: 4 },
                     { stat: 'GERMAN_TRUST', value: -8 },
                 ],

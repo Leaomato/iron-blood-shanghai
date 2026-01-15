@@ -158,7 +158,7 @@ export interface GameState {
 // ==================== INITIAL VALUES ====================
 export const INITIAL_VISIBLE_STATS: VisibleStats = {
     ELITE: 85,
-    INTL: 40,
+    INTL: 55,
     SUPPLY: 60,
     MORALE: 50,
 };

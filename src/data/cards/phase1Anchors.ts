@@ -51,7 +51,7 @@ export const phase1Anchors: Card[] = [
             effects: {
                 stats: [
                     { stat: 'MORALE', value: 15 },
-                    { stat: 'INTL', value: -10 },
+                    { stat: 'INTL', value: -5 },
                     { stat: 'JAP_AGGRO', value: 25 },
                     { stat: 'ELITE', value: -3, isBattleDamage: true },
                 ],
@@ -121,7 +121,7 @@ export const phase1Anchors: Card[] = [
             description: '承认错误。我们杀了自己人。',
             effects: {
                 stats: [
-                    { stat: 'INTL', value: -15 },
+                    { stat: 'INTL', value: -8 },
                     { stat: 'SUPPLY', value: -10 },
                     { stat: 'MORALE', value: -5 },
                 ],

@@ -380,7 +380,7 @@ export const specialCards: Card[] = [
             effects: {
                 stats: [
                     { stat: 'MORALE', value: -12 },
-                    { stat: 'INTL', value: -4 },
+                    { stat: 'INTL', value: -2 },
                     { stat: 'REFUGEE_CRISIS', value: -6 },
                     { stat: 'COMMUNIST_INFL', value: 3 },
                 ],
@@ -585,7 +585,7 @@ export const specialCards: Card[] = [
             effects: {
                 stats: [
                     { stat: 'SUPPLY', value: 12 },
-                    { stat: 'INTL', value: -6 },
+                    { stat: 'INTL', value: -3 },
                     { stat: 'MORALE', value: 1 },
                     { stat: 'COMMUNIST_INFL', value: 1 },
                 ],

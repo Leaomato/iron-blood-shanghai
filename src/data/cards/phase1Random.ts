@@ -254,7 +254,7 @@ export const phase1Random: Card[] = [
             description: '战争没有安全区。',
             effects: {
                 stats: [
-                    { stat: 'INTL', value: -12 },
+                    { stat: 'INTL', value: -6 },
                     { stat: 'MORALE', value: 6 },
                     { stat: 'SUPPLY', value: -4 },
                     { stat: 'JAP_AGGRO', value: 2 },
@@ -320,7 +320,7 @@ export const phase1Random: Card[] = [
             description: '战争不认边界。',
             effects: {
                 stats: [
-                    { stat: 'INTL', value: -12 },
+                    { stat: 'INTL', value: -6 },
                     { stat: 'JAP_AGGRO', value: 6 },
                     { stat: 'MORALE', value: 4 },
                     { stat: 'ELITE', value: -3, isBattleDamage: true },
@@ -563,7 +563,7 @@ export const phase1Random: Card[] = [
             description: '带着枪冲进去。死也要死成军人。',
             effects: {
                 stats: [
-                    { stat: 'INTL', value: -14 },
+                    { stat: 'INTL', value: -8 },
                     { stat: 'MORALE', value: 2 },
                     { stat: 'SUPPLY', value: -4 },
                     { stat: 'JAP_AGGRO', value: 3 },
