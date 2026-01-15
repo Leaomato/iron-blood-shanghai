@@ -237,6 +237,8 @@ export function TitleScreen({ onStart }: TitleScreenProps) {
                     ⚠ 任一数值归零 = 全局崩溃
                 </p>
             </motion.div>
+
+
         </div>
     );
 }
