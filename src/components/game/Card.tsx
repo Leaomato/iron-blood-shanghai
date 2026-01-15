@@ -1,7 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 import type { Card as CardType } from '../../types';
+
+const TUTORIAL_SHOWN_KEY = 'iron_blood_tutorial_shown';
 
 interface CardProps {
     card: CardType;
@@ -22,18 +24,73 @@ const colors = {
 };
 
 export function Card({ card, onChoice, onPreview }: CardProps) {
+    const [showTutorial, setShowTutorial] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return !localStorage.getItem(TUTORIAL_SHOWN_KEY);
+    });
+
     const [currentDirection, setCurrentDirection] = useState<'L' | 'R' | null>(null);
     const [exitDirection, setExitDirection] = useState<'L' | 'R' | null>(null);
+
+    const [prevCardId, setPrevCardId] = useState(card.id);
+
+    const [tutorialPhase, setTutorialPhase] = useState<'idle' | 'left' | 'right' | 'done'>('idle');
+    const tutorialRan = useRef(false);
 
     const x = useMotionValue(0);
     const rotate = useTransform(x, [-200, 0, 200], [-4, 0, 4]);
     const opacity = useTransform(x, [-350, -200, 0, 200, 350], [0, 1, 1, 1, 0]);
 
-    useEffect(() => {
-        x.set(0);
+    if (card.id !== prevCardId) {
+        setPrevCardId(card.id);
         setCurrentDirection(null);
         setExitDirection(null);
-    }, [card.id, x]);
+        x.set(0); // 重置 MotionValue
+    }
+
+    // 首次访问引导动画逻辑
+    useEffect(() => {
+        // 只有当 showTutorial 为 true 且动画未运行时才执行
+        if (!showTutorial || tutorialRan.current) return;
+
+        tutorialRan.current = true;
+
+        const runTutorialAnimation = async () => {
+            await new Promise(resolve => setTimeout(resolve, 600));
+
+            // 向左滑动提示
+            setTutorialPhase('left');
+            await animate(x, -80, { duration: 0.4, ease: 'easeOut' });
+            await new Promise(resolve => setTimeout(resolve, 300));
+            await animate(x, 0, { duration: 0.3, ease: 'easeInOut' });
+
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+            // 向右滑动提示
+            setTutorialPhase('right');
+            await animate(x, 80, { duration: 0.4, ease: 'easeOut' });
+            await new Promise(resolve => setTimeout(resolve, 300));
+            await animate(x, 0, { duration: 0.3, ease: 'easeInOut' });
+
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // 完成引导
+            setTutorialPhase('done');
+            setShowTutorial(false);
+            localStorage.setItem(TUTORIAL_SHOWN_KEY, 'true');
+        };
+
+        runTutorialAnimation();
+    }, [showTutorial, x]); // 依赖项移除 card.id，逻辑更清晰
+
+    // 点击选项处理
+    const handleChoiceClick = useCallback((direction: 'L' | 'R') => {
+        if (exitDirection !== null || showTutorial) return;
+
+        setExitDirection(direction);
+        onPreview(null);
+        setTimeout(() => onChoice(direction), 180);
+    }, [exitDirection, showTutorial, onChoice, onPreview]);
 
     const handleDrag = useCallback((_: unknown, info: PanInfo) => {
         const threshold = 40;
@@ -124,7 +181,7 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
                     mass: 0.6,
                 }}
             >
-
+                {/* ... 余下的渲染代码保持不变 ... */}
 
                 {/* 机密印章 */}
                 {card.type === 'ANCHOR' && (
@@ -210,18 +267,23 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
                 >
                     {/* 左选项 */}
                     <div
+                        onClick={() => handleChoiceClick('L')}
                         style={{
                             padding: '16px',
                             borderRight: `1px solid ${colors.paperDark}`,
                             backgroundColor:
-                                currentDirection === 'L'
+                                currentDirection === 'L' || tutorialPhase === 'left'
                                     ? 'rgba(140, 61, 61, 0.1)'
                                     : 'transparent',
                             transition: 'background-color 0.2s ease',
+                            cursor: 'pointer',
+                            userSelect: 'none',
                         }}
                     >
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
-                            <span
+                            <motion.span
+                                animate={tutorialPhase === 'left' ? { x: [-3, 0, -3] } : {}}
+                                transition={{ duration: 0.4, repeat: Infinity }}
                                 style={{
                                     fontSize: '10px',
                                     color: colors.blood,
@@ -229,7 +291,7 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
                                 }}
                             >
                                 ◀
-                            </span>
+                            </motion.span>
                             <div>
                                 <h3
                                     style={{
@@ -257,13 +319,16 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
 
                     {/* 右选项 */}
                     <div
+                        onClick={() => handleChoiceClick('R')}
                         style={{
                             padding: '16px',
                             backgroundColor:
-                                currentDirection === 'R'
+                                currentDirection === 'R' || tutorialPhase === 'right'
                                     ? 'rgba(120, 110, 92, 0.1)'
                                     : 'transparent',
                             transition: 'background-color 0.2s ease',
+                            cursor: 'pointer',
+                            userSelect: 'none',
                         }}
                     >
                         <div
@@ -296,7 +361,9 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
                                     {card.choiceR.description}
                                 </p>
                             </div>
-                            <span
+                            <motion.span
+                                animate={tutorialPhase === 'right' ? { x: [3, 0, 3] } : {}}
+                                transition={{ duration: 0.4, repeat: Infinity }}
                                 style={{
                                     fontSize: '10px',
                                     color: colors.bronze,
@@ -304,7 +371,7 @@ export function Card({ card, onChoice, onPreview }: CardProps) {
                                 }}
                             >
                                 ▶
-                            </span>
+                            </motion.span>
                         </div>
                     </div>
                 </div>
